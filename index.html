@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greek Odyssey</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- main container-->
+    <div class="container">
+        <!-- Entrance/Landing Page -->
+        <div id="entrance" class="space active">
+            <h1>Greek Odyssey</h1>
+            <p>Memories of three beautiful destinations in Greece</p>
+            <blockquote class="welcome-quote">“It takes a lifetime to discover Greece, but it only takes an instant to fall in love with her.”<br><span class="quote-author">- Henry Miller</span></blockquote>
+            <div class="map-container">
+                <svg viewBox="0 0 800 1000" class="greece-map">
+                    <!-- map of Greece -->
+                    <path class="map-land" d="M400,200 L500,250 L550,300 L500,350 L450,400 L400,450 L350,500 L300,550 L250,500 L200,450 L150,400 L100,350 L150,300 L200,250 L300,200 Z"/>
+                    
+                    <!-- spots -->
+                    <g class="island-group">
+                        <!-- Athens -->
+                        <g class="marker-group">
+                            <circle class="location-marker athens" cx="400" cy="350" r="15" data-target="athens"/>
+                            <text x="400" y="380" class="location-label">Athens</text>
+                            <foreignObject x="370" y="290" width="120" height="60" class="tooltip-foreign">
+                                <div class="map-tooltip" xmlns="http://www.w3.org/1999/xhtml">This is where I meet Viki, had sandals made for me by a poet, and was introduced to Eurovision.</div>
+                            </foreignObject>
+                        </g>
+                        
+                        <!-- Rhodes -->
+                        <g class="marker-group">
+                            <circle class="location-marker rhodes" cx="550" cy="450" r="15" data-target="rhodes"/>
+                            <text x="550" y="480" class="location-label">Rhodes</text>
+                            <foreignObject x="520" y="390" width="160" height="60" class="tooltip-foreign">
+                                <div class="map-tooltip" xmlns="http://www.w3.org/1999/xhtml">Regal Rhodes was where I stayed in a walled city in an ancient tower. Then went on to see ancient temples. And this is where I bought my favorite sweater.</div>
+                            </foreignObject>
+                        </g>
+                        
+                        <!-- Patmos -->
+                        <g class="marker-group">
+                            <circle class="location-marker patmos" cx="450" cy="300" r="15" data-target="patmos"/>
+                            <text x="450" y="330" class="location-label">Patmos</text>
+                            <foreignObject x="420" y="240" width="120" height="50" class="tooltip-foreign">
+                                <div class="map-tooltip" xmlns="http://www.w3.org/1999/xhtml">Memories of Patmos leave me speechless.</div>
+                            </foreignObject>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="enter-button">A Chapter of Time </div>
+        </div>
+
+        <!-- Athens page-->
+        <div id="athens" class="space">
+            <h2>Athens</h2>
+            <div class="content">
+                <div class="photo-gallery">
+                    <div class="gallery-container">
+                        <div class="main-image">
+                            <img id="athens-main-img" src="./images/athens-main.jpg" alt="The Acropolis of Athens" class="gallery-img" onerror="this.onerror=null; console.log('Error loading main image');">
+                        </div>
+                        <div id="athens-popup" class="image-popup">
+                            <div class="popup-content">
+                                <span class="popup-close">&times;</span>
+                                <h3>Athens Memory</h3>
+                                <p>I had been thinking of visiting this city since I was a young child. Once there,I had the best possible visit. I met someone who showed me the insider's view of Athens. An unforgettable experience.</p>
+                            </div>
+                        </div>
+                        <div class="thumbnail-grid">
+                            <img src="./images/athens-1.jpg" alt="Ancient ruins of Athens" class="thumbnail" onerror="this.onerror=null; console.log('Error loading thumbnail 1');">
+                            <img src="./images/athens-2.jpg" alt="Temple of Olympian Zeus" class="thumbnail" onerror="this.onerror=null; console.log('Error loading thumbnail 2');">
+                            <img src="./images/athens-3.jpg" alt="Plaka neighborhood" class="thumbnail" onerror="this.onerror=null; console.log('Error loading thumbnail 3');">
+                        </div>
+                    </div>
+                </div>
+                <div class="journal">
+                    <p>Memories of Athens...</p>
+                </div>
+            </div>
+            <div class="navigation-buttons">
+                <div class="nav-button" data-target="entrance">Back to Map</div>
+                <div class="nav-button" data-target="rhodes">Next: Rhodes</div>
+            </div>
+        </div>
+
+        <!-- Rhodes -->
+        <div id="rhodes" class="space">
+            <h2>Rhodes</h2>
+            <div class="content">
+                <div class="photo-gallery">
+                    <div class="gallery-container">
+                        <div class="main-image">
+                            <img src="images/rhodes-main.jpg" alt="Medieval City of Rhodes" class="gallery-img">
+                        </div>
+                        <div class="thumbnail-grid">
+                            <img src="images/rhodes-1.jpg" alt="Palace of the Grand Master" class="thumbnail">
+                            <img src="images/rhodes-2.jpg" alt="Street of the Knights" class="thumbnail">
+                            <img src="images/rhodes-3.jpg" alt="Rhodes Harbor" class="thumbnail">
+                        </div>
+                    </div>
+                </div>
+                <div class="journal">
+                    <p>Refreshing Rhodes</p>
+                </div>
+            </div>
+            <div class="navigation-buttons">
+                <div class="nav-button" data-target="entrance">Back to Map</div>
+                <div class="nav-button" data-target="athens">Previous: Athens</div>
+                <div class="nav-button" data-target="patmos">Next: Patmos</div>
+            </div>
+        </div>
+
+        <!-- Patmos page -->
+        <div id="patmos" class="space">
+            <h2>Patmos</h2>
+            <div class="content">
+                <div class="photo-gallery">
+                    <div class="gallery-container">
+                        <div class="main-image">
+                            <img src="images/patmos-main.jpg" alt="Monastery of Saint John" class="gallery-img">
+                        </div>
+                        <div class="thumbnail-grid">
+                            <img src="images/patmos-1.jpg" alt="Cave of the Apocalypse" class="thumbnail">
+                            <img src="images/patmos-2.jpg" alt="Chora of Patmos" class="thumbnail">
+                            <img src="images/patmos-3.jpg" alt="Patmos beaches" class="thumbnail">
+                        </div>
+                    </div>
+                </div>
+                <div class="journal">
+                    <p>Peaceful Patmos</p>
+                </div>
+            </div>
+            <div class="navigation-buttons">
+                <div class="nav-button" data-target="entrance">Back to Map</div>
+                <div class="nav-button" data-target="rhodes">Previous: Rhodes</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
