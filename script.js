@@ -1,4 +1,117 @@
+// Initialize the map when the page loads
+function initializeMap() {
+    // Create map centered on Greece
+    const map = L.map('interactive-map').setView([38.5, 24.5], 6);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 18,
+    }).addTo(map);
+
+    // Define your destinations with corrected coordinates
+    const destinations = [
+        {
+            name: 'Athens',
+            coords: [37.983389, 23.727508],
+            description: 'Where I met Viki, had sandals made by a poet, and discovered Eurovision.',
+            target: 'athens'
+        },
+        {
+            name: 'Rhodes',
+            coords: [36.441039, 28.222527],
+            description: 'Regal Rhodes with its medieval walled city and ancient temples. Where I found my favorite sweater.',
+            target: 'rhodes'
+        },
+        {
+            name: 'Patmos',
+            coords: [37.308889, 26.549167],
+            description: 'Memories of Patmos leave me speechless.',
+            target: 'patmos'
+        }
+    ];
+
+    // Use simpler, more reliable icon
+    const customIcon = L.icon({
+        iconUrl: 'data:image/svg+xml,' + encodeURIComponent(`
+            <svg width="40" height="50" viewBox="0 0 40 50" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 0C8.955 0 0 8.955 0 20c0 14.286 20 30 20 30s20-15.714 20-30C40 8.955 31.045 0 20 0z" fill="#e74c3c"/>
+                <circle cx="20" cy="20" r="8" fill="white"/>
+            </svg>
+        `),
+        iconSize: [40, 50],
+        iconAnchor: [20, 50],
+        popupAnchor: [0, -50]
+    });
+
+    // Add markers for each destination
+    console.log('Adding markers for destinations:', destinations);
+    
+    destinations.forEach((dest, index) => {
+        console.log(`Adding marker ${index + 1}: ${dest.name} at ${dest.coords}`);
+        
+        const marker = L.marker(dest.coords, { icon: customIcon }).addTo(map);
+        
+        // Add a label for better visibility
+        L.marker(dest.coords).bindTooltip(dest.name, {
+            permanent: true,
+            direction: 'bottom',
+            offset: [0, 10],
+            className: 'location-label-tooltip'
+        }).addTo(map);
+        
+        // Create popup content
+        const popupContent = `
+            <div class="map-popup-content">
+                <h3>${dest.name}</h3>
+                <p>${dest.description}</p>
+                <button class="popup-navigate-btn" data-target="${dest.target}">Explore ${dest.name}</button>
+            </div>
+        `;
+        
+        marker.bindPopup(popupContent, {
+            maxWidth: 250,
+            className: 'custom-popup'
+        });
+        
+        // Add click event to navigate to the location
+        marker.on('click', function() {
+            // Small delay to let the popup render
+            setTimeout(() => {
+                const navigateBtn = document.querySelector(`[data-target="${dest.target}"]`);
+                if (navigateBtn && !navigateBtn.hasListener) {
+                    navigateBtn.hasListener = true;
+                    navigateBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.switchSpace(dest.target);
+                        map.closePopup();
+                    });
+                }
+            }, 100);
+        });
+        
+        // Debug: Log that marker was added
+        console.log(`Marker added for ${dest.name}`);
+    });
+    
+    // Adjust map view to show all markers with some padding
+    const group = new L.featureGroup(destinations.map(dest => L.marker(dest.coords)));
+    map.fitBounds(group.getBounds().pad(0.1));
+
+    // Draw a line connecting the destinations
+    const routeLine = destinations.map(dest => dest.coords);
+    L.polyline(routeLine, {
+        color: '#e74c3c',
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '10, 5'
+    }).addTo(map);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize the map first
+    initializeMap();
+    
     // making all navigation buttons
     const navButtons = document.querySelectorAll('.nav-button');
     const enterButton = document.querySelector('.enter-button');
@@ -28,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // switch between spaces
-    function switchSpace(targetId) {
+    // switch between spaces - Make this function globally accessible
+    window.switchSpace = function(targetId) {
         console.log("Switching to:", targetId); // Debug line
         
         // Hide all spaces
@@ -49,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetId !== 'entrance' && audioPlayers[targetId]) {
                 audioPlayers[targetId].play().catch(error => {
                     console.log('Audio autoplay prevented by browser:', error);
-                    // We'll add music controls later for user-initiated playback
                 });
             }
         } else {
@@ -77,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Enter button not found!");
     }
 
-    // event listeners for the location markers
+    // event listeners for the location markers (SVG markers if any)
     locationMarkers.forEach(marker => {
         marker.addEventListener('click', () => {
             const targetId = marker.getAttribute('data-target');
@@ -265,10 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.image-popup').forEach(popup => {
             if (event.target === popup) {
                 popup.style.display = 'none';
-                
-                // Find which location this popup belongs to
-                const locationId = popup.id.split('-')[0];
-                // We don't pause the audio anymore when closing popup
                 
                 // Update the music controls
                 updateMusicControls();
