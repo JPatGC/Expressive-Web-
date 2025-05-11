@@ -13,71 +13,75 @@
         <div id="entrance" class="space active">
             <h1>Greek Odyssey</h1>
             <p>Memories of three beautiful destinations in Greece</p>
-            <blockquote class="welcome-quote">“It takes a lifetime to discover Greece, but it only takes an instant to fall in love with her.”<br><span class="quote-author">- Henry Miller</span></blockquote>
+            <blockquote class="welcome-quote">"It takes a lifetime to discover Greece, but it only takes an instant to fall in love with her."<br><span class="quote-author">- Henry Miller</span></blockquote>
+            
             <div class="map-container">
-                <svg viewBox="0 0 800 1000" class="greece-map">
-                    <!-- map of Greece -->
-                    <path class="map-land" d="M400,200 L500,250 L550,300 L500,350 L450,400 L400,450 L350,500 L300,550 L250,500 L200,450 L150,400 L100,350 L150,300 L200,250 L300,200 Z"/>
+                <!-- Simple image-based map with clickable markers -->
+                <div class="greece-map-wrapper">
+                    <img src="./images/greece-map.png" alt="Map of Greece" class="greece-map-img" onerror="this.onerror=null; this.src=''; this.style.height='300px'; this.style.backgroundColor='#e0e9f0'; this.style.border='3px solid #3a6ea5';">
                     
-                    <!-- spots -->
-                    <g class="island-group">
-                        <!-- Athens -->
-                        <g class="marker-group">
-                            <circle class="location-marker athens" cx="400" cy="350" r="15" data-target="athens"/>
-                            <text x="400" y="380" class="location-label">Athens</text>
-                            <foreignObject x="370" y="290" width="120" height="60" class="tooltip-foreign">
-                                <div class="map-tooltip" xmlns="http://www.w3.org/1999/xhtml">This is where I meet Viki, had sandals made for me by a poet, and was introduced to Eurovision.</div>
-                            </foreignObject>
-                        </g>
-                        
-                        <!-- Rhodes -->
-                        <g class="marker-group">
-                            <circle class="location-marker rhodes" cx="550" cy="450" r="15" data-target="rhodes"/>
-                            <text x="550" y="480" class="location-label">Rhodes</text>
-                            <foreignObject x="520" y="390" width="160" height="60" class="tooltip-foreign">
-                                <div class="map-tooltip" xmlns="http://www.w3.org/1999/xhtml">Regal Rhodes was where I stayed in a walled city in an ancient tower. Then went on to see ancient temples. And this is where I bought my favorite sweater.</div>
-                            </foreignObject>
-                        </g>
-                        
-                        <!-- Patmos -->
-                        <g class="marker-group">
-                            <circle class="location-marker patmos" cx="450" cy="300" r="15" data-target="patmos"/>
-                            <text x="450" y="330" class="location-label">Patmos</text>
-                            <foreignObject x="420" y="240" width="120" height="50" class="tooltip-foreign">
-                                <div class="map-tooltip" xmlns="http://www.w3.org/1999/xhtml">Memories of Patmos leave me speechless.</div>
-                            </foreignObject>
-                        </g>
-                    </g>
-                </svg>
+                    <!-- Markers positioned absolutely over the image -->
+                    <div class="map-marker athens-marker" data-target="athens">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">Athens</div>
+                    </div>
+                    
+                    <div class="map-marker rhodes-marker" data-target="rhodes">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">Rhodes</div>
+                    </div>
+                    
+                    <div class="map-marker patmos-marker" data-target="patmos">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">Patmos</div>
+                    </div>
+                </div>
             </div>
-            <div class="enter-button">A Chapter of Time </div>
+            
+            <div class="enter-button">A Chapter of Time</div>
         </div>
 
         <!-- Athens page-->
         <div id="athens" class="space">
+            <div class="music-controls">
+    <button class="music-button play-pause">
+        <span class="music-icon">▶</span>
+    </button>
+    <input type="range" class="volume-slider" min="0" max="100" value="50">
+    <audio id="athens-music" loop>
+        <source src="audio/athens-music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</div>
             <h2>Athens</h2>
             <div class="content">
                 <div class="photo-gallery">
                     <div class="gallery-container">
                         <div class="main-image">
-                            <img id="athens-main-img" src="./images/athens-main.jpg" alt="The Acropolis of Athens" class="gallery-img" onerror="this.onerror=null; console.log('Error loading main image');">
+                            <img id="athens-main-img" src="./images/athens-main.jpg" alt="The Acropolis of Athens" class="gallery-img" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
                         </div>
                         <div id="athens-popup" class="image-popup">
                             <div class="popup-content">
                                 <span class="popup-close">&times;</span>
                                 <h3>Athens Memory</h3>
-                                <p>I had been thinking of visiting this city since I was a young child. Once there,I had the best possible visit. I met someone who showed me the insider's view of Athens. An unforgettable experience.</p>
+                                <p>I had been thinking of visiting this city since I was a young child. Once there, I had the best possible visit. I met someone who showed me the insider's view of Athens. An unforgettable experience.</p>
                             </div>
                         </div>
                         <div class="thumbnail-grid">
-                            <img src="./images/athens-1.jpg" alt="Ancient ruins of Athens" class="thumbnail" onerror="this.onerror=null; console.log('Error loading thumbnail 1');">
-                            <img src="./images/athens-2.jpg" alt="Temple of Olympian Zeus" class="thumbnail" onerror="this.onerror=null; console.log('Error loading thumbnail 2');">
-                            <img src="./images/athens-3.jpg" alt="Plaka neighborhood" class="thumbnail" onerror="this.onerror=null; console.log('Error loading thumbnail 3');">
-                        </div>
+    <img src="./images/athens-1.jpg" alt="Ancient ruins of Athens" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+    <img src="./images/athens-2.jpg" alt="Temple of Olympian Zeus" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+    <img src="./images/athens-3.jpg" alt="Plaka neighborhood" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+    <img src="./images/athens-4.jpg" alt="Acropolis Museum" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+    <img src="./images/athens-5.jpg" alt="Monastiraki Square" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+        </div>
                     </div>
                 </div>
                 <div class="journal">
-                    <p>Memories of Athens...</p>
+                    <p>Memories of Athens</p>
+                    <div class="journal-entry">
+                        <p>Standing before the Parthenon, I couldn't help but feel the weight of history pressing down on me. The ancient columns, weathered by thousands of years of sun and rain, still stood proud against the azure sky of Athens. I spent hours wandering through the ancient agora, imagining the voices of philosophers that once debated here, shaping Western thought for millennia to come.</p>
+                        <p>In the evenings, I explored the winding streets of Plaka, where tavernas spilled out onto cobblestone alleys and the scent of grilled souvlaki and oregano filled the air. A local musician played rebetiko on his bouzouki while patrons clapped along, drinking ouzo and sharing plates of mezze. These are the moments that capture the soul of Athens - where ancient history and vibrant modern life exist in perfect harmony.</p>
+                    </div>
                 </div>
             </div>
             <div class="navigation-buttons">
@@ -88,22 +92,38 @@
 
         <!-- Rhodes -->
         <div id="rhodes" class="space">
+            <div class="music-controls">
+    <button class="music-button play-pause">
+        <span class="music-icon">▶</span>
+    </button>
+    <input type="range" class="volume-slider" min="0" max="100" value="50">
+    <audio id="rhodes-music" loop>
+        <source src="audio/rhodes-music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</div>
             <h2>Rhodes</h2>
             <div class="content">
                 <div class="photo-gallery">
                     <div class="gallery-container">
                         <div class="main-image">
-                            <img src="images/rhodes-main.jpg" alt="Medieval City of Rhodes" class="gallery-img">
+                            <img src="./images/rhodes-main.jpg" alt="Medieval City of Rhodes" class="gallery-img" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
                         </div>
                         <div class="thumbnail-grid">
-                            <img src="images/rhodes-1.jpg" alt="Palace of the Grand Master" class="thumbnail">
-                            <img src="images/rhodes-2.jpg" alt="Street of the Knights" class="thumbnail">
-                            <img src="images/rhodes-3.jpg" alt="Rhodes Harbor" class="thumbnail">
-                        </div>
+             <img src="./images/rhodes-1.jpg" alt="Palace of the Grand Master" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+            <img src="./images/rhodes-2.jpg" alt="Street of the Knights" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+             <img src="./images/rhodes-3.jpg" alt="Rhodes Harbor" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+             <img src="./images/rhodes-4.jpg" alt="Lindos Acropolis" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+             <img src="./images/rhodes-5.jpg" alt="Anthony Quinn Bay" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+        </div>
                     </div>
                 </div>
                 <div class="journal">
                     <p>Refreshing Rhodes</p>
+                    <div class="journal-entry">
+                        <p>Walking through the medieval streets of Rhodes Old Town felt like stepping through a portal in time. The massive stone walls, built by the Knights of St. John, enclosed a labyrinth of cobblestone pathways lined with shops, tavernas, and historic buildings. I spent hours exploring the Palace of the Grand Master, marveling at the intricate mosaics and imposing architecture.</p>
+                        <p>Later, I escaped the midday heat by swimming in the crystal-clear waters of Lindos Beach, with its stunning view of the acropolis perched high above on the cliff. The perfect blend of history, culture, and natural beauty made Rhodes unforgettable.</p>
+                    </div>
                 </div>
             </div>
             <div class="navigation-buttons">
@@ -115,22 +135,38 @@
 
         <!-- Patmos page -->
         <div id="patmos" class="space">
+            <div class="music-controls">
+    <button class="music-button play-pause">
+        <span class="music-icon">▶</span>
+    </button>
+    <input type="range" class="volume-slider" min="0" max="100" value="50">
+    <audio id="patmos-music" loop>
+        <source src="audio/patmos-music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</div>
             <h2>Patmos</h2>
             <div class="content">
                 <div class="photo-gallery">
                     <div class="gallery-container">
                         <div class="main-image">
-                            <img src="images/patmos-main.jpg" alt="Monastery of Saint John" class="gallery-img">
+                            <img src="./images/patmos-main.jpg" alt="Monastery of Saint John" class="gallery-img" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
                         </div>
-                        <div class="thumbnail-grid">
-                            <img src="images/patmos-1.jpg" alt="Cave of the Apocalypse" class="thumbnail">
-                            <img src="images/patmos-2.jpg" alt="Chora of Patmos" class="thumbnail">
-                            <img src="images/patmos-3.jpg" alt="Patmos beaches" class="thumbnail">
-                        </div>
+                       <div class="thumbnail-grid">
+        <img src="./images/patmos-1.jpg" alt="Cave of the Apocalypse" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+         <img src="./images/patmos-2.jpg" alt="Chora of Patmos" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+         <img src="./images/patmos-3.jpg" alt="Patmos beaches" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+         <img src="./images/patmos-4.jpg" alt="Skala harbor" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+         <img src="./images/patmos-5.jpg" alt="Sunset in Patmos" class="thumbnail" onerror="this.onerror=null; this.src=''; this.style.backgroundColor='#f8f9fa';">
+    </div>
                     </div>
                 </div>
                 <div class="journal">
                     <p>Peaceful Patmos</p>
+                    <div class="journal-entry">
+                        <p>Patmos captivated me with its serene beauty and spiritual significance. The island where St. John reportedly wrote the Book of Revelation has a tranquil energy unlike anywhere else I've visited. The Monastery of St. John the Theologian stands proudly atop the island's highest point, offering breathtaking views of the Aegean Sea stretching to the horizon.</p>
+                        <p>I found myself drawn to the Cave of the Apocalypse, where pilgrims spoke in hushed tones. Later, I wandered through the narrow whitewashed streets of Chora, finding hidden courtyards adorned with vibrant bougainvillea. As the sun set, I sat at a small taverna by the water, savoring freshly caught fish while watching fishing boats return to harbor. Patmos remains a sanctuary of peace in my memories.</p>
+                    </div>
                 </div>
             </div>
             <div class="navigation-buttons">
