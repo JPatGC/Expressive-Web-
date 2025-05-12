@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get navigation elements
+    // making the  navigation elements
     const navButtons = document.querySelectorAll('.nav-button');
     const enterButton = document.querySelector('.enter-button');
     const mapMarkers = document.querySelectorAll('.map-marker');
     const galleryImgs = document.querySelectorAll('.gallery-img');
     const thumbnails = document.querySelectorAll('.thumbnail');
     
-    // Music player functionality
+    // music player 
     let currentAudio = null;
 
-    // Function to pause all audio
+    // slider to pause  audio and volume
     function pauseAllAudio() {
         const allAudios = document.querySelectorAll('audio');
         allAudios.forEach(audio => {
@@ -25,24 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Function to switch between pages
+    // switching between pages
     function switchSpace(targetId) {
         console.log("Switching to:", targetId);
         
-        // Pause all audio when switching spaces
+        // pause all audio when switching spaces
         pauseAllAudio();
         
-        // Hide all spaces
+        // hide all spaces
         document.querySelectorAll('.space').forEach(space => {
             space.classList.remove('active');
         });
         
-        // Show target space
+        // show target space
         const targetSpace = document.getElementById(targetId);
         if (targetSpace) {
             targetSpace.classList.add('active');
             
-            // Auto-play the music for the current space (uncomment if you want auto-play)
+            // auto-play music
             
             setTimeout(() => {
                 const audio = targetSpace.querySelector('audio');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Navigation button event listeners
+    //  event listeners
     navButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetId = button.getAttribute('data-target');
@@ -70,14 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Enter button event listener
+    // enter button event listener
     if (enterButton) {
         enterButton.addEventListener('click', () => {
             switchSpace('athens');
         });
     }
     
-    // Map marker event listeners
+    // map marker event listeners
     mapMarkers.forEach(marker => {
         marker.addEventListener('click', () => {
             const targetId = marker.getAttribute('data-target');
@@ -92,12 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const athensPopup = document.getElementById('athens-popup');
     
     if (athensMainImg && athensPopup) {
-        // Open popup when clicking on main Athens image
+        // open popup when clicking on main Athens image
         athensMainImg.addEventListener('click', () => {
             athensPopup.style.display = 'flex';
         });
         
-        // Close popup when clicking on X
+        // close popup when clicking on X
         const closeBtn = athensPopup.querySelector('.popup-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Close popup when clicking outside content
+        // close popup when clicking outside content
         athensPopup.addEventListener('click', (e) => {
             if (e.target === athensPopup) {
                 athensPopup.style.display = 'none';
@@ -113,10 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Thumbnail functionality - switch main image when clicking thumbnails
+    // thumbnail functionality - switch main image when clicking thumbnails
     thumbnails.forEach(thumb => {
         thumb.addEventListener('click', function() {
-            // Get parent gallery container
+            //  parent gallery container
             const gallery = this.closest('.gallery-container');
             if (gallery) {
                 const mainImg = gallery.querySelector('.main-image img');
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Optional - image error handling
+    //  image error handling
     const mapImage = document.querySelector('.greece-map-img');
     if (mapImage) {
         mapImage.onerror = function() {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
     
-    // Handle gallery image errors
+    // deal with gallery image errors
     const allImages = document.querySelectorAll('img');
     allImages.forEach(img => {
         img.onerror = function() {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
     
-    // Set up music controls
+    // set up music controls
     const musicControls = document.querySelectorAll('.music-controls');
     musicControls.forEach(control => {
         const playPauseBtn = control.querySelector('.play-pause');
@@ -163,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const icon = playPauseBtn.querySelector('.music-icon');
                 
                 if (audio.paused) {
-                    // Pause any currently playing audio
+                    // pause any currently playing audio
                     pauseAllAudio();
                     
-                    // Play this audio
+                    // play audio
                     audio.play().catch(e => {
                         console.error('Error playing audio:', e);
                         alert('Could not play audio. Make sure your audio files exist in an "audio" folder.');
@@ -183,10 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         if (volumeSlider && audio) {
-            // Set initial volume
+            // initial volume
             audio.volume = volumeSlider.value / 100;
             
-            // Update volume when slider is changed
+            // pdate volume when slider is changed
             volumeSlider.addEventListener('input', () => {
                 audio.volume = volumeSlider.value / 100;
             });
